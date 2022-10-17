@@ -1,11 +1,11 @@
-import express from "express";
-import {callVelibAction} from "../controllers/velibController.js";
+const express = require("express");
+const { callVelibAction } = require("../controllers/velibController.js");
 
 const router = express.Router();
 
-router.get('/velib', () => {
-    callVelibAction();
+router.get('/velib', (req, res) => {
+    callVelibAction(req, res);
   }
 )
 
-export default router;
+module.exports = router;

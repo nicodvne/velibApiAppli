@@ -1,8 +1,8 @@
-import { callVelibApi } from '../services/velibApiManager.js'
+const express = require("express");
+const {callVelibApi} = require("../services/velibApiManager.js");
+const {uploadFileInBucket} = require("../services/bucketManager.js");
 
-import { uploadFileInBucket } from '../services/bucketManager.js'
-
-export async function callVelibAction(req, res) {
+async function callVelibAction (req, res) {
     try {
         let datas = await callVelibApi();
         uploadFileInBucket(datas);
@@ -11,5 +11,8 @@ export async function callVelibAction(req, res) {
     }
     
     res.status(200).json({"message": "Save OK"});
-
 }
+
+module.exports = {
+    callVelibAction
+};
